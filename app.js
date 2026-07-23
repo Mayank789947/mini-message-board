@@ -10,13 +10,9 @@ app.set("view engine", "ejs");
 const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
 
-const links = [
-    { href: "/", text: "Home" }
-]
+const indexRoutes = require("./routes/indexRouter");
 
-app.get("/", (req, res) => {
-    res.render("index", { links: links });
-});
+app.use("/", indexRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
