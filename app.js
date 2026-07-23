@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("node:path");
+const indexRoutes = require("./routes/indexRouter");
 
 const PORT = 3000;
 
@@ -12,7 +13,6 @@ app.use(express.static(assetsPath));
 
 app.use(express.urlencoded({ extended: true }));
 
-const indexRoutes = require("./routes/indexRouter");
 
 app.use("/", indexRoutes);
 
