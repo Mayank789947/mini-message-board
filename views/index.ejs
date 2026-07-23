@@ -11,7 +11,7 @@
     <% messages.forEach((message) => { %>
         <h2>User: <%= message.user %> </h2>
         <p>message: <%= message.text %> </p>
-        <p> <%= message.added %> </p>
+        <small><%= message.added.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true }) %></small>
     <% }) %>
 </body>
 </html>
