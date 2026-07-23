@@ -1,9 +1,9 @@
 const messages  = require("../messageData");
 
 function createMessage(req, res) {
-    const { author, messageText } = req.body;
+    const { user, messageText } = req.body;
 
-    if (!author || !messageText) {
+    if (!user || !messageText) {
         return res.status(400).json({
             "success": false,
             "message": "data required to create new message"
@@ -11,8 +11,9 @@ function createMessage(req, res) {
     }
 
     const newMessage = {
+        id: messages.length + 1,
         text: messageText,
-        user: author,
+        user: user,
         added: new Date()
     }
 
@@ -21,4 +22,19 @@ function createMessage(req, res) {
     res.redirect("/");
 }
 
-module.exports = createMessage;
+function getMessageDetails(req, res) {
+    const id = Number(req.params.id);
+
+    const message = messages.find(message => message.id === id);
+
+    if (!message) {
+        return res.status(404).json({
+            "success": false,
+            "message": "No message found"
+        });
+    }
+
+    res.render("messageDetails", { message: message });
+}
+
+module.exports = { createMessage, getMessageDetails };
