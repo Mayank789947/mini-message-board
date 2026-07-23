@@ -4,7 +4,7 @@ const messageController = require("../controllers/messageController");
 const messages = require("../messageData")
 
 router.get("/", (req, res) => {
-    res.render("index", { title: "Mini messageBoard", messages: messages });
+    res.render("index", { title: "Mini Message Board", messages: messages });
 });
 
 router.get("/new", (req, res) => {
