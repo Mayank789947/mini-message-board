@@ -1,3 +1,178 @@
+/* Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: rebeccapurple;
+    font-family: "Inter", sans-serif;
+    background: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 40px 20px;
+}
+
+/* Heading */
+
+h1 {
+    text-align: center;
+    color: #1f2937;
+    margin-bottom: 40px;
+}
+
+/* new message button */
+/* Create New Message Button */
+
+.new-message-btn {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 35px;
+    padding: 12px 22px;
+    background: #10b981;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.new-message-btn:hover {
+    background: #059669;
+    transform: translateY(-2px);
+}
+
+/* Message Card */
+
+.message-card {
+    max-width: 700px;
+    margin: 0 auto 25px;
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.message-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.message-card h2 {
+    color: #2563eb;
+    margin-bottom: 12px;
+}
+
+.message-card p {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #444;
+}
+
+.message-card small {
+    display: block;
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+.message-card a {
+    display: inline-block;
+    text-decoration: none;
+    background: #2563eb;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.message-card a:hover {
+    background: #1d4ed8;
+}
+
+/* Form */
+
+form {
+    max-width: 500px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+form h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #1f2937;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.2s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+/* Standalone links (Back to Home, etc.) */
+
+body > a {
+    display: block;
+    width: fit-content;
+    margin: 30px auto 0;
+    text-decoration: none;
+    color: #2563eb;
+    font-weight: 600;
+}
+
+body > a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    .message-card,
+    form {
+        padding: 20px;
+    }
 }
