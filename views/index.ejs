@@ -16,13 +16,13 @@
     <% messages.forEach((message)=> { %>
         <div class="message-card">
             <h2>
-                <%= message.user %>
+                <%= message.username %>
             </h2>
             <p>
                 <%= message.text %>
             </p>
             <small>
-                <%= message.added.toLocaleString('en-IN') %>
+                <%= message.created_at.toLocaleString('en-IN') %>
             </small>
 
             <a href="/messages/<%= message.id %>">View message</a>
