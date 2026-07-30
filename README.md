@@ -1,24 +1,36 @@
 # Mini Message Board
 
-A simple message board application built with **Node.js**, **Express.js**, and **EJS**. Users can view all messages, create new messages, and view individual message details.
+A simple message board application built with **Node.js**, **Express.js**, **PostgreSQL**, and **EJS**. Users can view all messages, create new messages, and view individual message details. Messages are stored in a PostgreSQL database, so they persist even after the server restarts.
+
+---
 
 ## Features
 
 * View all messages on the home page
 * Create a new message using a form
-* View details of a single message
+* View details of an individual message
+* Persistent data storage using PostgreSQL
+* Server-side form validation with Express Validator
+* User input is preserved when validation fails
 * Dynamic server-side rendering with EJS
-* Clean and responsive UI using CSS
-* Express routing and middleware
-* In-memory data storage (no database)
+* Clean and responsive UI
+* MVC architecture
+* Parameterized SQL queries for improved security
+
+---
 
 ## Tech Stack
 
 * Node.js
 * Express.js
+* PostgreSQL
+* pg
+* Express Validator
 * EJS
 * HTML5
 * CSS3
+
+---
 
 ## Project Structure
 
@@ -28,55 +40,89 @@ mini-message-board/
 ├── controllers/
 │   └── messageController.js
 │
+├── models/
+│   └── messageModel.js
+│
 ├── routes/
-│   └── messageRouter.js
+│   └── indexRouter.js
+│
+├── db/
+│   └── pool.js
 │
 ├── views/
 │   ├── index.ejs
 │   ├── form.ejs
-│   └── message.ejs
+│   └── messageDetails.ejs
 │
 ├── public/
 │   └── styles.css
 │
+├── db/
+│   └── populatedb.js
+│
 ├── app.js
 ├── package.json
+├── .env
 └── README.md
 ```
 
-> Your project structure may vary slightly depending on how you've organized your files.
+> Your project structure may vary slightly depending on your implementation.
+
+---
 
 ## Installation
 
-1. Clone the repository.
+### 1. Clone the repository
 
 ```bash
 git clone <repository-url>
 ```
 
-2. Navigate to the project directory.
+### 2. Navigate to the project directory
 
 ```bash
 cd mini-message-board
 ```
 
-3. Install dependencies.
+### 3. Install dependencies
 
 ```bash
 npm install
 ```
 
-4. Start the server.
+### 4. Create a `.env` file
+
+Add your PostgreSQL connection string:
+
+```env
+DB_URL=your_postgresql_connection_string
+```
+
+---
+
+### 5. Seed the database
+
+```bash
+node db/populatedb.js
+```
+
+This creates the required table and inserts sample messages.
+
+---
+
+### 6. Start the server
 
 ```bash
 node app.js
 ```
 
-If you're using **nodemon**:
+or, if using nodemon:
 
 ```bash
 npm run dev
 ```
+
+---
 
 ## Usage
 
@@ -86,11 +132,13 @@ Open your browser and visit:
 http://localhost:3000
 ```
 
-From there you can:
+You can:
 
 * Browse all messages
 * Create a new message
 * View an individual message
+
+---
 
 ## Routes
 
@@ -101,44 +149,77 @@ From there you can:
 | POST   | `/new`          | Create a new message      |
 | GET    | `/messages/:id` | Display a single message  |
 
-## Message Object
+---
 
-Each message contains the following properties:
+## Database Schema
 
-```javascript
-{
-  id: 1,
-  user: "John",
-  text: "Hello, Express!",
-  added: new Date()
-}
-```
+### messages
+
+| Column     | Type         |
+| ---------- | ------------ |
+| id         | INTEGER      |
+| username   | VARCHAR(255) |
+| text       | TEXT         |
+| created_at | TIMESTAMP    |
+
+---
+
+## Validation
+
+The application validates user input on the server using **Express Validator**.
+
+### Username
+
+* Required
+* Minimum length of 2 characters
+
+### Message
+
+* Required
+
+If validation fails:
+
+* The form is re-rendered.
+* Validation errors are displayed.
+* Previously entered values are preserved.
+
+---
 
 ## Learning Objectives
 
-This project helped reinforce the following Express.js concepts:
+This project helped reinforce the following backend concepts:
 
 * Express application setup
-* Routing
-* Route parameters
+* MVC architecture
+* Express routing
 * GET and POST requests
-* Middleware (`express.urlencoded()`)
-* Serving static files
-* Template rendering with EJS
-* Passing data from controllers to views
-* Basic MVC project structure
+* Route parameters
+* Middleware
+* Server-side rendering with EJS
+* PostgreSQL integration using `pg`
+* Connection pooling
+* Environment variables
+* Database seeding
+* Parameterized SQL queries
+* Express Validator
+* Input sanitization with `matchedData()`
+* Server-side form validation
+
+---
 
 ## Future Improvements
 
 * Edit existing messages
 * Delete messages
-* Persist data using a database (MongoDB/PostgreSQL)
-* Form validation
-* Flash messages
 * User authentication
 * Pagination
 * Search functionality
+* Better timestamp formatting
+* Field-level validation messages
+* Centralized error handling
+
+---
 
 ## License
 
-This project is created for learning purposes.
+This project was built for learning purposes as part of **The Odin Project** backend curriculum.
