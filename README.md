@@ -4,6 +4,24 @@ A simple message board application built with **Node.js**, **Express.js**, **Pos
 
 ---
 
+## 🚀 Live Demo
+
+https://mini-message-board-5cq4.onrender.com/
+
+---
+
+## Screenshots
+
+### Home Page
+
+![Home Page](./assets/mini-messageboard-home.png)
+
+### Create Message
+
+![Create Message](./assets/mini-messageboard-createmessage.png)
+
+---
+
 ## Features
 
 * View all messages on the home page
@@ -60,13 +78,14 @@ mini-message-board/
 ├── db/
 │   └── populatedb.js
 │
+├── assets/
 ├── app.js
 ├── package.json
 ├── .env
+├── validate.js
 └── README.md
-```
 
-> Your project structure may vary slightly depending on your implementation.
+```
 
 ---
 
