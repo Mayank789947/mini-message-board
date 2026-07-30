@@ -1,4 +1,12 @@
+const { validationResult, matchedData } = require("express-validator");
 const messageModel = require("../models/messageModel");
+
+function renderMessageForm(req, res) {
+    res.render("form", {
+        errors: [],
+        values: {}
+    });
+}
 
 async function getAllMessages(req, res) {
     const messages = await messageModel.getAllMessages();
@@ -10,11 +18,16 @@ async function getAllMessages(req, res) {
 }
 
 async function createMessage(req, res) {
-    const { text, username } = req.body;
+   const errors = validationResult(req);
 
-    if (!text || !username) {
-        return res.status(400).send("data required to create new message");
-    }
+   if (!errors.isEmpty()) {
+     return res.status(400).render("form", { 
+        errors: errors.array(),
+        values: req.body
+    });
+   }
+
+   const { text, username } = matchedData(req);
 
     await messageModel.createMessage(text, username)
 
@@ -36,5 +49,6 @@ async function getMessageDetails(req, res) {
 module.exports = { 
     getAllMessages,
     createMessage, 
-    getMessageDetails
+    getMessageDetails,
+    renderMessageForm
 };
