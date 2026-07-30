@@ -25,7 +25,21 @@ async function getMessageById(id) {
     return result.rows[0];
 }
 
+async function createMessage(text, username) {
+    const result = await pool.query(
+        `
+          INSERT INTO messages
+           (text, username)
+           VALUES
+           ($1, $2)
+           RETURNING *;
+        `,
+        [text, username]
+    );
+}
+
 module.exports = {
     getAllMessages,
-    getMessageById
+    getMessageById,
+    createMessage
 }

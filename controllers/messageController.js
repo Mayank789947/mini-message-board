@@ -1,4 +1,3 @@
-const messages  = require("../messageData");
 const messageModel = require("../models/messageModel");
 
 async function getAllMessages(req, res) {
@@ -10,24 +9,14 @@ async function getAllMessages(req, res) {
     });
 }
 
-function createMessage(req, res) {
-    const { user, messageText } = req.body;
+async function createMessage(req, res) {
+    const { text, username } = req.body;
 
-    if (!user || !messageText) {
-        return res.status(400).json({
-            "success": false,
-            "message": "data required to create new message"
-        });
+    if (!text || !username) {
+        return res.status(400).send("data required to create new message");
     }
 
-    const newMessage = {
-        id: messages.length + 1,
-        text: messageText,
-        user: user,
-        added: new Date()
-    }
-
-    messages.push(newMessage);
+    await messageModel.createMessage(text, username)
 
     res.redirect("/");
 }
