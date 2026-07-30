@@ -1,10 +1,10 @@
+require("dotenv").config();
+
 const express = require("express");
-const app = express();
 const path = require("node:path");
 const indexRoutes = require("./routes/indexRouter");
 
-require("dotenv").config();
-
+const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.set("views", path.join(__dirname, "views"));
