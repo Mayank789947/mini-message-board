@@ -32,16 +32,13 @@ function createMessage(req, res) {
     res.redirect("/");
 }
 
-function getMessageDetails(req, res) {
+async function getMessageDetails(req, res) {
     const id = Number(req.params.id);
 
-    const message = messages.find(message => message.id === id);
+    const message = await messageModel.getMessageById(id);
 
     if (!message) {
-        return res.status(404).json({
-            "success": false,
-            "message": "No message found"
-        });
+        return res.status(404).send("No message found");
     }
 
     res.render("messageDetails", { message: message });
