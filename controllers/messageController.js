@@ -1,4 +1,14 @@
 const messages  = require("../messageData");
+const messageModel = require("../models/messageModel");
+
+async function getAllMessages(req, res) {
+    const messages = await messageModel.getAllMessages();
+
+    res.render("index", {
+        title: "Mini Message Board",
+        messages
+    });
+}
 
 function createMessage(req, res) {
     const { user, messageText } = req.body;
@@ -37,4 +47,8 @@ function getMessageDetails(req, res) {
     res.render("messageDetails", { message: message });
 }
 
-module.exports = { createMessage, getMessageDetails };
+module.exports = { 
+    getAllMessages,
+    createMessage, 
+    getMessageDetails
+};
