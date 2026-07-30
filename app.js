@@ -15,6 +15,17 @@ app.use(express.static(assetsPath));
 
 app.use(express.urlencoded({ extended: true }));
 
+const pool = require("./db/pool");
+
+(async () => {
+  try {
+    const result = await pool.query("SELECT NOW()");
+    console.log(result.rows[0]);
+  } catch (err) {
+    console.error("TEST CONNECTION:", err);
+  }
+})();
+
 app.use("/", indexRoutes);
 
 app.listen(PORT, () => {
