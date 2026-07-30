@@ -1,11 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const messageController = require("../controllers/messageController");
-const messages = require("../messageData")
 
-router.get("/", (req, res) => {
-    res.render("index", { title: "Mini Message Board", messages: messages });
-});
+
+router.get("/", messageController.getAllMessages);
 
 router.get("/new", (req, res) => {
     res.render("form");

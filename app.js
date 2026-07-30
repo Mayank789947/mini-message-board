@@ -15,7 +15,6 @@ app.use(express.static(assetsPath));
 
 app.use(express.urlencoded({ extended: true }));
 
-
 app.use("/", indexRoutes);
 
 app.listen(PORT, () => {
